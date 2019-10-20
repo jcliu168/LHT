@@ -10,15 +10,18 @@ while day:
 
 games.close()
 
+# Getting user input on date
+
 # Testing if it's gameday
 gameDay = False
 if date == dict_games:
     gameDay = True
 
 # Acting on whether or not it's gameday
+offset = 200
 if gameDay == False:
     print("No change to Schedule")
 else:
     print("Optimized Schedule From ")
     print (startTime + offset) + " to " + (offset+range)
-    display(bus_times)
+    display(bus_times) #needs to be written, function that will do most work
