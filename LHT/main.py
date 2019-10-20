@@ -1,5 +1,4 @@
 import sys
-import constants
 import calculations
 import re
 import datetime

@@ -1,7 +1,6 @@
 # Takes constants and efficiency curve and adds together
 # Recursively finds points of buses in minutes
 import datetime
-import constants
 import math
 
 
@@ -9,8 +8,8 @@ def calc_sched(date, start_time):
     train_relative_times = []
     date = datetime.datetime(2019, int(date[0:2]), int(date[2:4]))
     dow = date.weekday()
-    x = constants.OFFSET
-    train = constants.OFFSET
+    x = 120
+    train = 120
     while x <= 240:
         if dow in range(6):
             val = 30 * math.exp(((x - 187) ^ 2) / 3400)
