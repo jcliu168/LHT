@@ -1,8 +1,22 @@
 # Takes constants and efficiency curve and adds together 
-# Recursively finds points of buses
+# Recursively finds points of buses in minutes
 
 import constants.py
 
 x = constants.offset
+train_relative_times = {}
 
-while x < (x + 400
+while x <= 240
+  if dow == "weekday"
+    val = 30 * e^(((x-187)^2)/3400)
+    train = round(7.27 + val)
+  else if dow == "saturday"
+    val = #eq
+    train = round(const + val)
+  else #sunday
+    val = #eq
+    train = round(const + val)
+    
+   train_relative_times =+ train
+   x = train
+   
