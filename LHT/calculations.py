@@ -4,12 +4,10 @@ import datetime
 import math
 
 
-def calc_sched(date, start_time):
+def calc_sched(date, start_time, dow):
     start_hrs = int(start_time[0:2])
     start_mins = int(start_time[2:4])
     start_time = int(start_time)
-    date = datetime.datetime(2019, int(date[0:2]), int(date[2:4]))
-    dow = date.weekday()
     time0day = "PM"
     currtime = 120
     while currtime <= 240:
@@ -56,4 +54,4 @@ def calc_sched(date, start_time):
         realtime_hrs = "0" + str(realtime_hrs) if realtime_hrs < 10 else str(realtime_hrs)
         realtime_mins = "0" + str(realtime_mins) if realtime_mins < 10 else str(realtime_mins)
 
-        print("The game day train arrives at     <" + str(realtime_hrs) + ":" + str(realtime_mins) + time0day + ">")
+        print("The game day train arrives at " + str(realtime_hrs) + ":" + str(realtime_mins) + " " +time0day)

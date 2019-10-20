@@ -33,12 +33,20 @@ while date != "exit":
     date = date[0:2] + date[3:5]
     game_day = True if date in game_sched else False
     if not game_day:
-        print("No change to schedule")
+        print("No Game: No change to schedule")
     else:
         start_time = game_sched[date]
-        print("Optimized Schedule:")
-        print("Start time: " + start_time[0:2] + ":" + start_time[2:4])
-        calculations.calc_sched(date, start_time)
+        print("Game Day")
+        print("Game Start Time: " + start_time[0:2] + ":" + start_time[2:4])
+        date = datetime.datetime(2019, int(date[0:2]), int(date[2:4]))
+        dow = date.weekday()
+        numPass = "7,400"
+        numTrain = "15"
+        if dow in range (6):
+            numTrain = "22"
+            numPass = "10,500"
+        print("Optimized Schedule: " + numTrain + " additional trains for " + numPass + " fans")
+        calculations.calc_sched(date, start_time, dow)
         continue
 
 
