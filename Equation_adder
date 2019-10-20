@@ -11,12 +11,12 @@ while x <= 240
     val = 30 * e^(((x-187)^2)/3400)
     train = round(7.27 + val)
   else if dow == "saturday"
-    val = #eq
+    val = 30 * e^((-1*(x-180)*(x-193))/3280)
     train = round(const + val)
   else #sunday
-    val = #eq
+    val = 30 * e^((-1*(x-180)*(x-193))/3280)
     train = round(const + val)
     
-   train_relative_times =+ train
+   train_relative_times += train
    x = train
    
