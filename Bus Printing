@@ -1,0 +1,10 @@
+# Displaying bus times, need to convert base times back to hour format
+
+# Mod by 1200 in order to account for hours after midnight
+
+ # train_relative_times is the minutes after start time
+ 
+ start_time = gamesched[date]
+ 
+ while x: train_relative_times
+  
