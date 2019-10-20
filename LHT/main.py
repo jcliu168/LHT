@@ -35,9 +35,10 @@ while date != "exit":
     if not game_day:
         print("No change to schedule")
     else:
-        print("Optimized Schedule:")
         start_time = game_sched[date]
+        print("Optimized Schedule:")
+        print("Start time: " + start_time[0:2] + ":" + start_time[2:4])
         calculations.calc_sched(date, start_time)
         continue
 
-    #print(startTime + constants.OFFSET) + " to " + (constants.OFFSET + range)
+

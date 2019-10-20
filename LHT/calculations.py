@@ -5,38 +5,55 @@ import math
 
 
 def calc_sched(date, start_time):
-    train_relative_times = []
+    start_hrs = int(start_time[0:2])
+    start_mins = int(start_time[2:4])
+    start_time = int(start_time)
     date = datetime.datetime(2019, int(date[0:2]), int(date[2:4]))
     dow = date.weekday()
-    x = 120
-    train = 120
-    while x <= 240:
+    time0day = "PM"
+    currtime = 120
+    while currtime <= 240:
         if dow in range(6):
-            val = 30 * math.exp(((x - 187) ^ 2) / 3400)
-            if (int(start_time) + math.floor(x/60)*100 + x % 60) <= 730:
-                const = 5.25
+            fanrate = 15 * math.exp(-((currtime - 187) * (currtime - 187)) / 3400)
+            if (start_time + math.floor(currtime/60)*100 + currtime % 60) <= 730:
+                regrate = 60 / 5.25
             else:
-                const = 8.25
-            train = round(const + val)
+                regrate = 60 / 8.25
+            totrate = fanrate + regrate
+            traininterval = round(60 / totrate)
         elif dow == 6:
-            val = 30 * math.exp((-1 * (x - 180) * (x - 193)) / 3280)
-            if (int(start_time) + math.floor(x / 60) * 100 + x % 60) <= 630:
-                const = 6
+            fanrate = 10.2 * math.exp(-(currtime - 180) * (currtime - 193) / 3280)
+            if (start_time + math.floor(currtime / 60) * 100 + currtime % 60) <= 630:
+                regrate = 60 / 6
             else:
-                const = 8
-            train = round(const + val)
+                regrate = 60 / 8
+            totrate = fanrate + regrate
+            traininterval = round(60 / totrate)
         else:
-            val = 30 * math.exp((-1 * (x - 180) * (x - 193)) / 3280)
-            if (int(start_time) + math.floor(x / 60) * 100 + x % 60) <= 800:
-                const = 8
+            fanrate = 10.2 * math.exp(-(currtime - 180) * (currtime - 193) / 3280)
+            if (start_time + math.floor(currtime / 60) * 100 + currtime % 60) <= 800:
+                regrate = 60 / 8
             else:
-                const = 9.75
-            train = round(const + val)
-        train_relative_times.append(train)
-        x += train
-    for x in train_relative_times:
-        trainhrs = math.floor(x / 60) * 100
-        trainmin = (x % 60)
-        train_time = int(start_time) + trainmin + trainhrs
-        train_time = train_time % 1200  # Account for hours after midnight
-        print(train_time)
+                regrate = 60 / 9.75
+            totrate = fanrate + regrate
+            traininterval = round(60 / totrate)
+        currtime += traininterval
+        realtime_hrs = math.floor(start_hrs + (currtime / 60))
+        realtime_mins = math.floor(start_mins + (currtime % 60))
+
+        if realtime_mins >= 60:
+            realtime_hrs += 1
+            realtime_mins = realtime_mins % 60
+
+        tester_hrs = realtime_hrs
+        realtime_hrs = realtime_hrs % 13  # Account for hours after midnight
+        if tester_hrs >= 13:
+            realtime_hrs += 1
+
+        if tester_hrs >= 12:
+            time0day = "AM"
+
+        realtime_hrs = "0" + str(realtime_hrs) if realtime_hrs < 10 else str(realtime_hrs)
+        realtime_mins = "0" + str(realtime_mins) if realtime_mins < 10 else str(realtime_mins)
+
+        print("The game day train arrives at     <" + str(realtime_hrs) + ":" + str(realtime_mins) + time0day + ">")
