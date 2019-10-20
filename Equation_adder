@@ -1,0 +1,8 @@
+# Takes constants and efficiency curve and adds together 
+# Recursively finds points of buses
+
+import constants.py
+
+x = constants.offset
+
+while x < (x + 400
