@@ -1,9 +1,11 @@
+import sys
 import constants
+import calculations
 import re
 import datetime
 
 # Open file of games and format into dictionary
-games = open(r"2019 Home Schedule")
+games = open(r"2019 Home Schedule.txt")
 day = games.readline()
 game_sched = dict()
 
@@ -34,7 +36,9 @@ while date != "exit":
     if not game_day:
         print("No change to schedule")
     else:
-        print("Optimized Schedule From ")
+        print("Optimized Schedule:")
+        start_time = game_sched[date]
+        calculations.calc_sched(date, start_time)
         continue
 
     #print(startTime + constants.OFFSET) + " to " + (constants.OFFSET + range)
