@@ -6,6 +6,6 @@
  while x: train_relative_times
     hrs = math.floor(x/60) * 100
     min = (x % 60)
-    bus_time = start_time + min + hrs
-    bus_time = bus_time % 1200 # Account for hours after midnight
-    print bus_time \n
+    train_time = start_time + min + hrs
+    train_time = train_time % 1200 # Account for hours after midnight
+    print train_time \n
